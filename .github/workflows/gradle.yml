@@ -35,6 +35,14 @@ jobs:
        key: ${{ runner.os }}-gradle-${{ hashFiles('./**/*.gradle*', './**/gradle-wrapper.properties') }}
        restore-keys: |
           ${{ runner.os }}-gradle-
+    - name: Cache node modules
+      id: node-cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('./**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - name: Display gradle cache-hit
       run: echo "gradle cache-hit:${{steps.gradle-cache.outputs.cache-hit}}"
     - name: Make gradlew executable
