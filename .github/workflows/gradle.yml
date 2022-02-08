@@ -29,3 +29,16 @@ jobs:
       run: chmod +x ./gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Cache gradle dependencies
+      id: gradle-cache
+      uses: actions/cache@v2
+      with:
+       path: |
+        ~/.gradle/caches
+        ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+    - name: Display gradle cache-hit
+      run: echo "gradle cache-hit:${{steps.gradle-cache.output.cache-hit}}"
+    
