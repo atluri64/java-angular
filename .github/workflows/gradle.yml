@@ -36,8 +36,8 @@ jobs:
        path: |
         ~/.gradle/caches
         ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
+       key: ${{ runner.os }}-gradle-${{ hashFiles('./**/*.gradle*', './**/gradle-wrapper.properties') }}
+       restore-keys: |
           ${{ runner.os }}-gradle-
     - name: Display gradle cache-hit
       run: echo "gradle cache-hit:${{steps.gradle-cache.output.cache-hit}}"
