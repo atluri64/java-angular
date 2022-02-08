@@ -43,8 +43,6 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('./**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    - name: Display gradle cache-hit
-      run: echo "gradle cache-hit:${{steps.gradle-cache.outputs.cache-hit}}"
     - name: Make gradlew executable
       run: chmod +x ./gradlew
     - name: Build with Gradle
